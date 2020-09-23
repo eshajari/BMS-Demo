@@ -1,0 +1,30 @@
+PODS:
+  - Alamofire (5.2.2)
+  - ProgressHUD (13.4)
+  - SDWebImage (5.9.1):
+    - SDWebImage/Core (= 5.9.1)
+  - SDWebImage/Core (5.9.1)
+  - SkeletonView (1.9)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - ProgressHUD
+  - SDWebImage
+  - SkeletonView
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - ProgressHUD
+    - SDWebImage
+    - SkeletonView
+
+SPEC CHECKSUMS:
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  ProgressHUD: 137a7fc677487c5581668f4490563124fb35c232
+  SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
+  SkeletonView: f72ac4df69730e48324efae062ba580c2fce974d
+
+PODFILE CHECKSUM: a6a7a265641d41e1ad24757bc31fad7b637a6e17
+
+COCOAPODS: 1.9.3
