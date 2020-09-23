@@ -8,8 +8,29 @@
 
 import UIKit
 
+protocol ResultsTableViewDelegate: class {
+  func didSelect(result: String)
+}
+
+
+
 class ResultTableViewController: UITableViewController {
 
+    weak var delegate: ResultsTableViewDelegate?
+    var isSearching :Bool!
+    //var arrFilteredResult = [Result]()
+    var arrFilteredResult = [Result]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
+    var arrsearchHistory = [String]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,67 +45,70 @@ class ResultTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return isSearching ? ( arrFilteredResult.count) : ( arrsearchHistory.count)
+        
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        
+        if isSearching {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Moviecell", for: indexPath) as! Moviecell
 
-        // Configure the cell...
+            let objmv = arrFilteredResult[indexPath.row]
+            cell.lblmoviename.text = objmv.title
+            
+            return cell
 
-        return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "historycell", for: indexPath)
+
+            let lblname = cell.viewWithTag(10) as! UILabel
+            lblname.text = arrsearchHistory[indexPath.row]
+            
+            return cell
+
+        }
     }
-    */
+    
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if isSearching
+        {
+        
+            let objmv = arrFilteredResult[indexPath.row]
+            self.InsertSearchHistory(objmv.title)
+        }
+        else {
+            let objstr = arrsearchHistory[indexPath.row]
+            delegate?.didSelect(result: objstr)
+            
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func InsertSearchHistory(_ textsearch: String) {
+    
+        if arrsearchHistory.count < 6 {
+            arrsearchHistory.append(textsearch)
+            
+        }
+        else {
+            arrsearchHistory.removeFirst()
+            arrsearchHistory.append(textsearch)
+        }
+        
+        let defaults = UserDefaults.standard
+        defaults.set(arrsearchHistory, forKey: EJTextConst.Key.local_store)
+        defaults.synchronize()
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

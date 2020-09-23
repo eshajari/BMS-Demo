@@ -10,7 +10,9 @@ import UIKit
 import Alamofire
 import SDWebImage
 
-class ViewController: UITableViewController , UISearchResultsUpdating, UISearchBarDelegate {
+
+
+class ViewController: UITableViewController  {
     
     
 
@@ -20,9 +22,12 @@ class ViewController: UITableViewController , UISearchResultsUpdating, UISearchB
     var searchController: UISearchController!
     var resultTblvc : ResultTableViewController!
 
+    var arrlastsearch = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        
         //API call for all data display
         self.getAllNowplaying()
         
@@ -32,9 +37,12 @@ class ViewController: UITableViewController , UISearchResultsUpdating, UISearchB
     
     func setupDisplay(){
         
+        let defaults = UserDefaults.standard
+        let savedArray = defaults.object(forKey: EJTextConst.Key.local_store) as? [String] ?? [String]()
+
         
         resultTblvc = storyboard!.instantiateViewController(withIdentifier: "IDResultTableViewController") as? ResultTableViewController
-        //resultTblvc.delegate = self
+        resultTblvc.delegate = self
         
         searchController = UISearchController(searchResultsController: resultTblvc)
         navigationItem.searchController = searchController
@@ -47,6 +55,8 @@ class ViewController: UITableViewController , UISearchResultsUpdating, UISearchB
         //searchController.automaticallyShowsScopeBar = false
         searchController.searchBar.searchTextField.textColor = .systemRed
         searchController.searchBar.searchTextField.tokenBackgroundColor = .systemRed
+        
+        
     }
     
     //MARK: - Table view methods
@@ -64,7 +74,7 @@ class ViewController: UITableViewController , UISearchResultsUpdating, UISearchB
         cell.lbldesc.text = objMovie.overview
         cell.lblreleasedate.text = objMovie.releaseDate
         let imgurl = URL(string: "\(EJTextConst.APIURL.API_ImageBase)\(objMovie.posterPath ?? "")")
-        cell.imgposter.sd_setImage(with: imgurl, placeholderImage: UIImage.init(named: ""))
+        cell.imgposter.sd_setImage(with: imgurl, placeholderImage: UIImage.init(named: "placeholder_poster"))
         cell.btnbook.addTarget(self, action: #selector(btnBookclicked(_:)), for: .touchUpInside)
                
         return cell
@@ -74,20 +84,135 @@ class ViewController: UITableViewController , UISearchResultsUpdating, UISearchB
         return 195
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let objMovie = arrMovielist[indexPath.row]
+               
+        self.InsertSearchHistory(objMovie.title)
+        
+        let vc =  storyboard!.instantiateViewController(withIdentifier: "IDDetailViewController") as! DetailViewController
+        vc.cuMovieId = objMovie.id
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @objc func btnBookclicked(_ sender : UIButton){
         showAlertonly(controller: self, withMessage: "Feature coming soon!")
     }
     
-    //MARK: - Search delegate
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        
-    }
+    
     
 
 }
 
+//MARK: - Search delegate
+extension ViewController : UISearchResultsUpdating , ResultsTableViewDelegate {
+    
+    func didSelect(result: String) {
+        
+        searchController.searchBar.searchTextField.text = result
+        searchforText(result)
+    }
+    
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        guard let text = searchController.searchBar.text else { return }
+            
+        if searchController.searchBar.text!.count < 1 {
+            resultTblvc.isSearching = false
+            resultTblvc.tableView.reloadData()
+        }
+        else {
+            resultTblvc.isSearching = true
+        }
+        
+       
+        
+    }
+    
+    func InsertSearchHistory(_ textsearch: String) {
+        
+        if resultTblvc.arrsearchHistory.count < 6 {
+            resultTblvc.arrsearchHistory.append(textsearch)
+            
+        }
+        else {
+            resultTblvc.arrsearchHistory.removeFirst()
+            resultTblvc.arrsearchHistory.append(textsearch)
+        }
+        let defaults = UserDefaults.standard
+        defaults.set(resultTblvc.arrsearchHistory, forKey: EJTextConst.Key.local_store)
+        defaults.synchronize()
+    }
+}
 
+extension ViewController : UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        print("Serching with \(searchText)")
+        if searchController.searchBar.text!.count > 0 {
+            searchforText(searchText)
+        }
+    
+    }
+    
+    
+    
+    func searchforText(_ searchtxt : String?){
+        
+        //Init searchcnt
+        guard searchController.isActive else { return }
+        
+        //Local text
+        guard let searchtxt = searchtxt else {
+          resultTblvc.arrFilteredResult = [Result]()
+          return
+        }
+        
+        // check basic nil
+        if searchtxt.isEmpty {
+            return
+        }
+        
+        //Filter with predicating result
+        let filterlocal = arrMovielist.filter{  objMv -> Bool in
+           
+            //let predi = NSPredicate.init(format: "title CONTAINS[c] %@*", searchtxt)
+            
+            let name = objMv.title
+            if name.contains(searchtxt) {
+                let range = name.range(of: searchtxt) //as Range
+                let position = range?.lowerBound.utf16Offset(in: name)
+                if position != 0 {
+                    let prevElement = name[name.index(before: range!.lowerBound)]
+                    if prevElement == " " {
+                        return true }
+                    else{
+                        return false
+                    }
+                }
+                else {
+                    return true
+                }
+                
+                //return true
+            }
+            else{
+                return false
+            }
+        }
+        
+        resultTblvc.arrFilteredResult = filterlocal
+        print("Filted data: \(filterlocal)")
+        
+        
+    }
+    
+    
+}
+
+// API
 extension ViewController {
     
     func getAllNowplaying(){
@@ -128,6 +253,8 @@ extension ViewController {
         
     }
     
+    
+
 //
 //
 ////    func APIReqCall(apiRequest : DataRequest , completion: @escaping ((_ issucceed: Bool,_ errmsg: String?,_ resp: Any?)->Void)){
