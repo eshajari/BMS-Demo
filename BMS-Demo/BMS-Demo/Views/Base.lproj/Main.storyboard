@@ -304,7 +304,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMn-PV-WNa">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2100"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DXo-GI-1HY">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
@@ -388,7 +388,7 @@
                                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Xu5-1O-uIL">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellreview" id="Xu5-1O-uIL">
                                                         <rect key="frame" x="5" y="10.5" width="404" height="179"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="30o-P9-dFX">
@@ -398,14 +398,14 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="var-NB-Ire">
                                                                     <rect key="frame" x="5" y="5" width="394" height="169"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DcB-Mt-4Qt">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DcB-Mt-4Qt">
                                                                             <rect key="frame" x="25" y="20" width="344" height="104"/>
                                                                             <string key="text">Summertime 2016 has not been very kind to **DC** Comics-based personalities looking to shine consistently like their big screen Marvel Comics counterparts. Following the super-sized dud that was _Batman v. Superman: Dawn of Justice_ released a few months ago must really put some major pressure on Warner Bros. to gamble on ensuring that the presence of **Suicide Squad** does not meet the same kind of indifferent reception.</string>
                                                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
                                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: John doe" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXu-WU-Mzg">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: John doe" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXu-WU-Mzg">
                                                                             <rect key="frame" x="20" y="134" width="354" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="1Yf-2t-1xa"/>
@@ -438,6 +438,10 @@
                                                         <size key="customSize" width="404" height="179"/>
                                                     </collectionViewCell>
                                                 </cells>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="8K0-Xi-Z6z" id="10l-pN-dmY"/>
+                                                    <outlet property="delegate" destination="8K0-Xi-Z6z" id="GZf-Ur-NnU"/>
+                                                </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1C-k2-glw">
                                                 <rect key="frame" x="15" y="755" width="379" height="20"/>
@@ -467,7 +471,7 @@
                                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DhP-uT-xv6">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellcast" id="DhP-uT-xv6">
                                                         <rect key="frame" x="5" y="5" width="160" height="190"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bEE-ud-xni">
@@ -477,14 +481,14 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Si8-mK-7b4">
                                                                     <rect key="frame" x="5" y="5" width="150" height="180"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="toA-P7-7PJ">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="toA-P7-7PJ">
                                                                             <rect key="frame" x="25" y="5" width="100" height="100"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="100" id="8Rm-JQ-xl3"/>
                                                                                 <constraint firstAttribute="width" constant="100" id="fFg-Go-uCR"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vickey Kaushal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVu-O1-oPW">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vickey Kaushal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVu-O1-oPW">
                                                                             <rect key="frame" x="0.0" y="115" width="150" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="2Ed-7D-6GC"/>
@@ -493,7 +497,7 @@
                                                                             <color key="textColor" red="0.10693276036588639" green="0.10693276036588639" blue="0.10693276036588639" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="as Nadeem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBh-KO-PNI">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="as Nadeem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBh-KO-PNI">
                                                                             <rect key="frame" x="0.0" y="140" width="150" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="THf-RZ-Nfv"/>
@@ -527,6 +531,10 @@
                                                         <size key="customSize" width="160" height="190"/>
                                                     </collectionViewCell>
                                                 </cells>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="8K0-Xi-Z6z" id="kEs-HP-YOX"/>
+                                                    <outlet property="delegate" destination="8K0-Xi-Z6z" id="reT-n2-H1P"/>
+                                                </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crew:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Qa-tn-of2">
                                                 <rect key="frame" x="15" y="1048" width="379" height="20"/>
@@ -550,7 +558,7 @@
                                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="m9A-TF-zEr">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellcrew" id="m9A-TF-zEr">
                                                         <rect key="frame" x="5" y="5" width="160" height="190"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wNs-dW-Jac">
@@ -560,14 +568,14 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vpq-6G-KZe">
                                                                     <rect key="frame" x="5" y="5" width="150" height="180"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZBj-VJ-HxD">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZBj-VJ-HxD">
                                                                             <rect key="frame" x="25" y="5" width="100" height="100"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="100" id="wJQ-9j-EhV"/>
                                                                                 <constraint firstAttribute="width" constant="100" id="yLf-L4-KNE"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vickey Kaushal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zk1-5I-ZYf">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vickey Kaushal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zk1-5I-ZYf">
                                                                             <rect key="frame" x="0.0" y="115" width="150" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="XxH-nA-DCS"/>
@@ -576,7 +584,7 @@
                                                                             <color key="textColor" red="0.10693276039999999" green="0.10693276039999999" blue="0.10693276039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="as Nadeem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dku-Gi-Sam">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="as Nadeem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dku-Gi-Sam">
                                                                             <rect key="frame" x="0.0" y="140" width="150" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="6z0-b7-m76"/>
@@ -610,6 +618,10 @@
                                                         <size key="customSize" width="160" height="190"/>
                                                     </collectionViewCell>
                                                 </cells>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="8K0-Xi-Z6z" id="IQw-Vs-zwg"/>
+                                                    <outlet property="delegate" destination="8K0-Xi-Z6z" id="krR-iV-0hs"/>
+                                                </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Similar Movies:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7P5-aC-9hq">
                                                 <rect key="frame" x="15" y="1318" width="379" height="20"/>
@@ -633,7 +645,7 @@
                                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3l0-rD-fyC">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellsimilar" id="3l0-rD-fyC">
                                                         <rect key="frame" x="5" y="5" width="160" height="190"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9Us-cu-tWU">
@@ -643,14 +655,14 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chy-a1-4fB">
                                                                     <rect key="frame" x="5" y="5" width="150" height="180"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l0j-hq-zOn">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l0j-hq-zOn">
                                                                             <rect key="frame" x="25" y="5" width="100" height="130"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="100" id="J59-yo-Ndt"/>
                                                                                 <constraint firstAttribute="height" constant="130" id="d2f-dm-Kzt"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vickey Kaushal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ACa-w3-iIz">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vickey Kaushal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ACa-w3-iIz">
                                                                             <rect key="frame" x="0.0" y="140" width="150" height="30"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="30" id="MyO-sm-sD1"/>
@@ -681,7 +693,22 @@
                                                         <size key="customSize" width="160" height="190"/>
                                                     </collectionViewCell>
                                                 </cells>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="8K0-Xi-Z6z" id="VRs-tm-fIE"/>
+                                                    <outlet property="delegate" destination="8K0-Xi-Z6z" id="h32-tz-MYa"/>
+                                                </connections>
                                             </collectionView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSQ-Nx-Z57">
+                                                <rect key="frame" x="20" y="15" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="2f1-vI-N0Q"/>
+                                                    <constraint firstAttribute="height" constant="40" id="aPj-pK-0Kp"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="arrow.left.circle" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                </state>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -689,7 +716,7 @@
                                             <constraint firstAttribute="trailing" secondItem="C2H-Qf-vCx" secondAttribute="trailing" constant="20" id="2kb-0w-Vir"/>
                                             <constraint firstItem="D1C-k2-glw" firstAttribute="top" secondItem="ZvF-dy-VUr" secondAttribute="bottom" constant="35" id="2kp-bn-aES"/>
                                             <constraint firstItem="fO7-CC-iKq" firstAttribute="bottom" secondItem="ZIn-Q5-oJs" secondAttribute="bottom" id="3wn-L4-2cd"/>
-                                            <constraint firstAttribute="height" constant="2500" id="5EU-aa-mhN"/>
+                                            <constraint firstAttribute="height" constant="2100" id="5EU-aa-mhN"/>
                                             <constraint firstItem="5uh-zq-7Vu" firstAttribute="leading" secondItem="lMn-PV-WNa" secondAttribute="leading" constant="15" id="7Hg-tM-yLI"/>
                                             <constraint firstAttribute="trailing" secondItem="4Qa-tn-of2" secondAttribute="trailing" constant="20" id="7JR-sn-3Se"/>
                                             <constraint firstItem="b2Z-WQ-Pnf" firstAttribute="top" secondItem="5uh-zq-7Vu" secondAttribute="bottom" constant="15" id="BDi-ML-hLD"/>
@@ -701,6 +728,7 @@
                                             <constraint firstItem="ZvF-dy-VUr" firstAttribute="top" secondItem="5yD-7w-DPm" secondAttribute="bottom" constant="10" id="MVq-NY-FGz"/>
                                             <constraint firstItem="Od2-ZJ-qWJ" firstAttribute="top" secondItem="M9V-vI-RQW" secondAttribute="bottom" constant="15" id="NLK-6S-bzL"/>
                                             <constraint firstAttribute="trailing" secondItem="Bz9-hb-ahr" secondAttribute="trailing" constant="20" id="OLQ-dP-YWN"/>
+                                            <constraint firstItem="gSQ-Nx-Z57" firstAttribute="leading" secondItem="lMn-PV-WNa" secondAttribute="leading" constant="20" id="P7x-62-tWP"/>
                                             <constraint firstItem="C2H-Qf-vCx" firstAttribute="leading" secondItem="lMn-PV-WNa" secondAttribute="leading" constant="15" id="PH9-SU-d4a"/>
                                             <constraint firstAttribute="trailing" secondItem="Od2-ZJ-qWJ" secondAttribute="trailing" constant="20" id="QZ6-FS-abi"/>
                                             <constraint firstItem="ZIn-Q5-oJs" firstAttribute="bottom" secondItem="DXo-GI-1HY" secondAttribute="bottom" constant="-10" id="Qqz-6e-SZJ"/>
@@ -719,6 +747,7 @@
                                             <constraint firstItem="ZvF-dy-VUr" firstAttribute="leading" secondItem="lMn-PV-WNa" secondAttribute="leading" id="eMb-z3-Sjl"/>
                                             <constraint firstItem="M9V-vI-RQW" firstAttribute="top" secondItem="Bz9-hb-ahr" secondAttribute="bottom" constant="10" id="f0n-bu-N9L"/>
                                             <constraint firstItem="D1C-k2-glw" firstAttribute="leading" secondItem="lMn-PV-WNa" secondAttribute="leading" constant="15" id="g4q-Vl-Xuf"/>
+                                            <constraint firstItem="gSQ-Nx-Z57" firstAttribute="top" secondItem="lMn-PV-WNa" secondAttribute="top" constant="15" id="hzX-wj-vPN"/>
                                             <constraint firstAttribute="trailing" secondItem="M9V-vI-RQW" secondAttribute="trailing" constant="20" id="k2d-yB-JHx"/>
                                             <constraint firstItem="p5i-aC-lwk" firstAttribute="leading" secondItem="lMn-PV-WNa" secondAttribute="leading" id="kUg-U9-way"/>
                                             <constraint firstItem="7P5-aC-9hq" firstAttribute="leading" secondItem="lMn-PV-WNa" secondAttribute="leading" constant="15" id="o96-VP-Yrc"/>
@@ -756,6 +785,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FOT-zB-wsx"/>
                     </view>
+                    <connections>
+                        <outlet property="collcasts" destination="b2Z-WQ-Pnf" id="QaT-q1-4Rg"/>
+                        <outlet property="collcrew" destination="ETt-B4-tvH" id="kfH-jk-t4K"/>
+                        <outlet property="collreview" destination="ZvF-dy-VUr" id="kO2-bd-r9f"/>
+                        <outlet property="collsimilar" destination="p5i-aC-lwk" id="rxA-1V-8FO"/>
+                        <outlet property="imgbackdrop" destination="DXo-GI-1HY" id="zOU-HW-0L0"/>
+                        <outlet property="lblReleasedate" destination="Od2-ZJ-qWJ" id="elz-sH-Izn"/>
+                        <outlet property="lblTagline" destination="M9V-vI-RQW" id="4lH-QB-Laa"/>
+                        <outlet property="lbldesc" destination="C2H-Qf-vCx" id="fn8-Ar-maf"/>
+                        <outlet property="lbllikecount" destination="ZIn-Q5-oJs" id="lDH-Xw-ZSG"/>
+                        <outlet property="lblmoviename" destination="Bz9-hb-ahr" id="RYt-J9-Oc8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hys-3w-XTq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -781,6 +822,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.left.circle" catalog="system" width="128" height="121"/>
         <image name="bmicon" width="77.5" height="77"/>
         <image name="suit.heart.fill" catalog="system" width="128" height="109"/>
     </resources>

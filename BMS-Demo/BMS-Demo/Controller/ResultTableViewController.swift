@@ -39,8 +39,13 @@ class ResultTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.tableView.reloadData()
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,8 +67,16 @@ class ResultTableViewController: UITableViewController {
         if isSearching {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Moviecell", for: indexPath) as! Moviecell
 
-            let objmv = arrFilteredResult[indexPath.row]
-            cell.lblmoviename.text = objmv.title
+            let objMovie = arrFilteredResult[indexPath.row]
+            
+            cell.lblmoviename.text = objMovie.title
+           cell.lbldesc.text = objMovie.overview
+           cell.lblreleasedate.text = objMovie.releaseDate
+           let imgurl = URL(string: "\(EJTextConst.APIURL.API_ImageBase)\(objMovie.posterPath ?? "")")
+           cell.imgposter.sd_setImage(with: imgurl, placeholderImage: UIImage.init(named: "placeholder_poster"))
+           //cell.btnbook.addTarget(self, action: #selector(btnBookclicked(_:)), for: .touchUpInside)
+           cell.btnbook.layer.cornerRadius = 4.0
+           cell.btnbook.layer.masksToBounds = true
             
             return cell
 
@@ -87,6 +100,9 @@ class ResultTableViewController: UITableViewController {
         
             let objmv = arrFilteredResult[indexPath.row]
             self.InsertSearchHistory(objmv.title)
+            let vc =  storyboard!.instantiateViewController(withIdentifier: "IDDetailViewController") as! DetailViewController
+            vc.cuMovieId = objmv.id
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         else {
             let objstr = arrsearchHistory[indexPath.row]

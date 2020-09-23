@@ -56,6 +56,9 @@ class ViewController: UITableViewController  {
         searchController.searchBar.searchTextField.textColor = .systemRed
         searchController.searchBar.searchTextField.tokenBackgroundColor = .systemRed
         
+        resultTblvc.isSearching = false
+        resultTblvc.arrsearchHistory = savedArray
+        
         
     }
     
@@ -76,7 +79,8 @@ class ViewController: UITableViewController  {
         let imgurl = URL(string: "\(EJTextConst.APIURL.API_ImageBase)\(objMovie.posterPath ?? "")")
         cell.imgposter.sd_setImage(with: imgurl, placeholderImage: UIImage.init(named: "placeholder_poster"))
         cell.btnbook.addTarget(self, action: #selector(btnBookclicked(_:)), for: .touchUpInside)
-               
+        cell.btnbook.layer.cornerRadius = 4.0
+        cell.btnbook.layer.masksToBounds = true
         return cell
     }
 
@@ -92,6 +96,7 @@ class ViewController: UITableViewController  {
         
         let vc =  storyboard!.instantiateViewController(withIdentifier: "IDDetailViewController") as! DetailViewController
         vc.cuMovieId = objMovie.id
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -118,6 +123,15 @@ extension ViewController : UISearchResultsUpdating , ResultsTableViewDelegate {
         
         guard let text = searchController.searchBar.text else { return }
             
+        if searchController.searchBar.searchTextField.isFirstResponder {
+          searchController.showsSearchResultsController = true
+          // 2
+          //searchController.searchBar.searchTextField.backgroundColor = UIColor.rwGreen().withAlphaComponent(0.1)
+        } else {
+          // 3
+          searchController.searchBar.searchTextField.backgroundColor = nil
+        }
+        
         if searchController.searchBar.text!.count < 1 {
             resultTblvc.isSearching = false
             resultTblvc.tableView.reloadData()
@@ -205,7 +219,8 @@ extension ViewController : UISearchBarDelegate {
         
         resultTblvc.arrFilteredResult = filterlocal
         print("Filted data: \(filterlocal)")
-        
+        searchController.reloadInputViews()
+        searchController.showsSearchResultsController = true
         
     }
     
